@@ -1,6 +1,6 @@
 # Contributing
 
-All changes should take place in a separate branch submitted to the master in the form of a _pull request_.
+All changes should take place in a separate branch submitted to the main in the form of a _pull request_.
 
 ## Steps:
 
@@ -11,10 +11,10 @@ All changes should take place in a separate branch submitted to the master in th
 > git checkout -b branchName
 ```
 
-2. After commiting your changes, rebase to make sure you have the latest changes from the master.
+2. After commiting your changes, rebase to make sure you have the latest changes from the main.
 
 ```sh
-> git rebase master
+> git rebase main
 ```
 
 3. Push your branch to the origin. Git will output a link for creating a _pull request_
