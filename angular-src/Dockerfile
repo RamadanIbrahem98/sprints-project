@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:14-alpine as build-step
 
 WORKDIR /app
 
@@ -14,6 +14,10 @@ RUN npm ci
 # Bundle app source
 COPY . /app
  
-EXPOSE 4200
- 
-CMD [ "npm", "start" ]
+RUN npm run build
+
+# Second step: put the build results in an nginx image to create
+# a much smaller image
+FROM nginx:1.20.1-alpine
+
+COPY --from=build-step public/ /usr/share/nginx/html 
