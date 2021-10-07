@@ -9,13 +9,25 @@ import { PlacePageComponent } from './place-page/place-page.component';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './home/navbar/navbar.component';
+import { BodyComponent } from './home/body/body.component';
+import { FooterComponent } from './home/footer/footer.component';
+import { CardComponent } from './home/body/card/card.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
-    PlacePageComponent
+    PlacePageComponent,
+    HomeComponent,
+    NavbarComponent,
+    BodyComponent,
+    FooterComponent,
+    CardComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule, FormsModule, appRoutingModule , NgImageSliderModule ,BrowserAnimationsModule
