@@ -43,7 +43,6 @@ import { RatingModule } from 'ng-starrating';
     AddPlaceComponent,
     MainpageComponent,
     FavComponent,
-
   ],
   imports: [
     BrowserModule, FormsModule, appRoutingModule , NgImageSliderModule ,BrowserAnimationsModule,ReactiveFormsModule, NgbModule,
