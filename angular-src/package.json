@@ -23,6 +23,7 @@
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "bootstrap": "^5.1.2",
     "bootstrap-icons": "^1.5.0",
+    "font-awesome": "^4.7.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "ng-image-slider": "^2.8.0",
