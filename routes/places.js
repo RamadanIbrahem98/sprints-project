@@ -1,28 +1,34 @@
-const router = require("express").Router();
+const router = require("express").Router({ mergeParams: true });
 const placesController = require("../controllers/places");
 
+const reviewsRouter = require("./reviews");
+
 const Category = require("../models/Category");
+const Place = require("../models/Place");
 
 const advancedResults = require("../middleware/advancedResults");
 
 const { protect, authorize } = require("../middleware/auth");
 
-router
-  .route("/categories")
-  .get(advancedResults(Category, "places"), placesController.getCategories)
-  .post(protect, authorize("admin", "user"), placesController.addCategory);
+router.use("/:placeId/reviews", reviewsRouter);
 
 router
-  .route("/categories/:categoryId/places")
-  .get(placesController.getPlaces)
+  .route("/")
+  .get(advancedResults(Place, { path: "category" }), placesController.getPlaces)
   .post(protect, authorize("admin", "user"), placesController.addPlace);
 
 router
-  .route("/categories/:categoryId/places/:placeId")
+  .route("/:placeId")
   .get(placesController.getPlace)
   .put(protect, authorize("admin", "user"), placesController.updatePlace)
   .delete(protect, authorize("admin"), placesController.deletePlace);
 
-router.route("/palces").get(placesController.getPlaces);
+router
+  .route("/:placeId/gallery")
+  .put(
+    protect,
+    authorize("admin", "user"),
+    placesController.uploadPlacePhotoGallery,
+  );
 
 module.exports = router;
