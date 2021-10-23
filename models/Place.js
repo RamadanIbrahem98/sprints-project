@@ -23,6 +23,8 @@ const PlaceSchema = new mongoose.Schema({
     ref: "Category",
     required: true,
   },
+  Social: String,
+  gallery: [{ type: String }],
   averageRating: Number,
   createdAt: {
     type: Date,

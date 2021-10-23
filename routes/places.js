@@ -23,4 +23,12 @@ router
   .put(protect, authorize("admin", "user"), placesController.updatePlace)
   .delete(protect, authorize("admin"), placesController.deletePlace);
 
+router
+  .route("/:placeId/gallery")
+  .put(
+    protect,
+    authorize("admin", "user"),
+    placesController.uploadPlacePhotoGallery,
+  );
+
 module.exports = router;

@@ -12,6 +12,7 @@ const swaggerSpec = require("./swagger/swagger-spec");
 
 const connectDB = require("./config/database");
 const usersRoutes = require("./routes/users");
+const favouritesRoutes = require("./routes/favourites");
 const categoriesRoutes = require("./routes/categories");
 const placesRoutes = require("./routes/places");
 const disabilitiesRoutes = require("./routes/disabilities");
@@ -43,7 +44,8 @@ app.use("/api/v1/categories", categoriesRoutes);
 app.use("/api/v1/places", placesRoutes);
 app.use("/api/v1", disabilitiesRoutes);
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1", usersRoutes);
+app.use("/api/v1/users", usersRoutes);
+app.use("/api/v1/favourites", favouritesRoutes);
 app.use("/api/v1/reviews", reviewsRoutes);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
