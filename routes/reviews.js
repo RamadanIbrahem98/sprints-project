@@ -21,10 +21,4 @@ router
 
 router.route("/place/:placeId/reviews").get(reviewsController.getReviews);
 
-// router
-//   .route("/place/:placeId/comments/:commentId")
-//   .get(reviewsController.getReview)
-//   .put(protect, authorize("admin", "user"), reviewsController.updateComment)
-//   .delete(protect, authorize("admin", "user"), reviewsController.deleteComment);
-
 module.exports = router;
