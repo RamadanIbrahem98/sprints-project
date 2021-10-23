@@ -2047,7 +2047,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/users/61736cd0760ece488d184340/favourites",
+							"raw": "{{URL}}/api/v1/users/favourites",
 							"host": [
 								"{{URL}}"
 							],
@@ -2055,7 +2055,6 @@
 								"api",
 								"v1",
 								"users",
-								"61736cd0760ece488d184340",
 								"favourites"
 							]
 						},
@@ -2068,7 +2067,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{URL}}/api/v1/users/61736cd0760ece488d184340/favourites",
+									"raw": "{{URL}}/api/v1/users/favourites",
 									"host": [
 										"{{URL}}"
 									],
@@ -2076,7 +2075,6 @@
 										"api",
 										"v1",
 										"users",
-										"61736cd0760ece488d184340",
 										"favourites"
 									]
 								}
@@ -2139,7 +2137,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/users/61736cd0760ece488d184340/favourites/6172d99674eb05cb39db28d9",
+							"raw": "{{URL}}/api/v1/users/favourites/6172d99674eb05cb39db28d9",
 							"host": [
 								"{{URL}}"
 							],
@@ -2147,7 +2145,6 @@
 								"api",
 								"v1",
 								"users",
-								"61736cd0760ece488d184340",
 								"favourites",
 								"6172d99674eb05cb39db28d9"
 							]
@@ -2172,7 +2169,7 @@
 									"raw": "{\r\n    \"favouriteId\": \"61735b742921ec9db413135e\"\r\n}"
 								},
 								"url": {
-									"raw": "{{URL}}/api/v1/users/61736cd0760ece488d184340/favourites/6172d99674eb05cb39db28d9",
+									"raw": "{{URL}}/api/v1/users/avourites/6172d99674eb05cb39db28d9",
 									"host": [
 										"{{URL}}"
 									],
@@ -2180,8 +2177,7 @@
 										"api",
 										"v1",
 										"users",
-										"61736cd0760ece488d184340",
-										"favourites",
+										"avourites",
 										"6172d99674eb05cb39db28d9"
 									]
 								}
@@ -2287,7 +2283,7 @@
 									"raw": "{\r\n    \"favouriteId\": \"61735b742921ec9db413135e\"\r\n}"
 								},
 								"url": {
-									"raw": "{{URL}}/api/v1/users/61736cd0760ece488d184340/favourites",
+									"raw": "{{URL}}/api/v1/users/favourites",
 									"host": [
 										"{{URL}}"
 									],
@@ -2295,7 +2291,6 @@
 										"api",
 										"v1",
 										"users",
-										"61736cd0760ece488d184340",
 										"favourites"
 									]
 								}
@@ -2358,7 +2353,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/users/61736cd0760ece488d184340/favourites/61735b742921ec9db413135e",
+							"raw": "{{URL}}/api/v1/users/favourites/61735b742921ec9db413135e",
 							"host": [
 								"{{URL}}"
 							],
@@ -2366,7 +2361,6 @@
 								"api",
 								"v1",
 								"users",
-								"61736cd0760ece488d184340",
 								"favourites",
 								"61735b742921ec9db413135e"
 							]
@@ -2380,7 +2374,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{URL}}/api/v1/users/61736cd0760ece488d184340/favourites/61735b742921ec9db413135e",
+									"raw": "{{URL}}/api/v1/users/favourites/61735b742921ec9db413135e",
 									"host": [
 										"{{URL}}"
 									],
@@ -2388,7 +2382,6 @@
 										"api",
 										"v1",
 										"users",
-										"61736cd0760ece488d184340",
 										"favourites",
 										"61735b742921ec9db413135e"
 									]
