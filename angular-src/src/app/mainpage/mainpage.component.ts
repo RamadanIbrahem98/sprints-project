@@ -24,19 +24,21 @@ export class MainpageComponent implements OnInit {
     {id:3,status:false},
     {id:4,status:false},
   ]
-  
+  favourites:any
   status: boolean= false;
-    heart(event: any){
-      for(let i = 0 ; i < this.arr.length ; i++)
-      {
-        if(this.arr[i].status === false)
-        { 
-          this.arr[i].status = !this.arr[i].status; 
+    heart(event: any, favouriteId:any){
+      this.home.addtofav(favouriteId).subscribe((data:any)=>{
+        // this.favourites  = data.data
+        for(let i = 0 ; i < this.arr.length ; i++)
+        {
+          if(this.arr[i].status === false)
+          { 
+            this.arr[i].status = !this.arr[i].status; 
+          }
+          else{
+            this.arr[i].status = false;
+          }
         }
-        else{
-          this.arr[i].status = false;
-        }
-      }
-      
+      })
   }
 }

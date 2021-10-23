@@ -50,6 +50,13 @@
                                         Invalid Rate
                                     </span>
                                 </div>
+                                <div class="mb-3">
+                                    <label class="form-label required" style="font-weight: 600;">Upload Image</label>
+                                    <input type="text" class="form-control" formControlName="Category" style="border: 1px solid grey;"> 
+                                    <span class="text-danger" *ngIf="addPlaceForm.controls.Category.errors && addPlaceForm.controls.Category.touched">
+                                        Invalid Rate
+                                    </span>
+                                </div>
                                 
                                 <div class="center">
                                     <a><button type="submit" class="b-c btn wd-125" [disabled]="addPlaceForm.invalid" style="background-color:#00a6d2;">Submit</button></a>
