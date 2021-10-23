@@ -14,8 +14,8 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
-              <li *ngIf="!auth1"><a class="nav-link active" routerLink="/auth">Login</a></li>
-              <li *ngIf="auth1" class="nav-item dropdown">
+              <li *ngIf="!isLoggedIn"><a class="nav-link active" routerLink="/auth">Login</a></li>
+              <li *ngIf="isLoggedIn" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-fill"></i>
                 </a>
