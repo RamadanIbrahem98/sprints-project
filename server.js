@@ -7,8 +7,6 @@ const colors = require("colors");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
-const swaggerUi = require("swagger-ui-express");
-const swaggerSpec = require("./swagger/swagger-spec");
 
 const connectDB = require("./config/database");
 const usersRoutes = require("./routes/users");
@@ -47,7 +45,9 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", usersRoutes);
 app.use("/api/v1/favourites", favouritesRoutes);
 app.use("/api/v1/reviews", reviewsRoutes);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.get("/api-docs", (req, res) =>
+  res.sendFile(path.join(__dirname, "public/api_docs/index")),
+);
 
 const PORT = process.env.PORT || 8080;
 
