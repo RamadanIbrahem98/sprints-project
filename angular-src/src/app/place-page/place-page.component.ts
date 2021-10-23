@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router'
+import {HomeService} from '../services/home.service'
 
 @Component({
   selector: 'app-place-page',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./place-page.component.css']
 })
 export class PlacePageComponent implements OnInit {
-
-  constructor() { }
+  categoryId:any
+  placeId:any
+  constructor(private home:HomeService, private route:ActivatedRoute) { }
   
   ngOnInit(): void {
+    this.categoryId=this.route.snapshot.paramMap.get('categoryId');
+    this.placeId=this.route.snapshot.paramMap.get('placeId');
+    this.home.getPlace(this.categoryId, this.placeId).subscribe((data:any) =>{
+      this.place = data.data
+    })
   } 
 
 //////////////////////////////////////////image slider////////////////////////

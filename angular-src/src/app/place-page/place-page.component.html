@@ -1,11 +1,12 @@
-<app-navbar></app-navbar>
-<div class="container-fluid ">
+<flash-messages></flash-messages>
+<app-navbar1></app-navbar1>
+<div class="content">
     <div class="main-desc">
         <div class="d-flex flex-column">
-            <h1 style="color: #112e51;"> {{place.name}} 
+            <h1 > {{place.name}} 
                 <i class="bi" (click)="heartClick($event)" [ngClass]="status ? 'bi-heart-fill' : 'bi-heart'"></i>
             </h1>
-            <h3 style="margin-top: 47px; color: #112e51;">Description</h3>
+            <h3 style="margin-top: 47px; ">Description</h3>
             <div style="padding: 15px;">
                 <p>Anything can happen</p>
             </div>
@@ -16,7 +17,7 @@
                     <i class="fa fa-star me-3 fa-lg" style="color: rgb(245, 238, 40);"></i>{{ place.rate | number : '1.1-1'}}
                 </h3>
             </div>
-            <h3 style="margin-top: 0px; color: #112e51;">Contact Us</h3>
+            <h3 style="margin-top: 0px;">Contact Us</h3>
             <a href="https://goo.gl/maps/w3AHf7ZCD8sQ7QCU8" class="text-reset text-decoration-none">
                 <i class="" target="_blank" class="fa fa-map-marker me-3"></i>{{place.name}}
             </a>
@@ -29,9 +30,9 @@
         </div>
     </div>
     <!-- ///////////////////////////////////////gallery/////////////////////////////////////// -->
-    <ng-image-slider  [images]="imgCollection" #nav></ng-image-slider>
+    <ng-image-slider  [images]="imgCollection"  #nav></ng-image-slider>
     <!-- ///////////////////////////////////////End gallery/////////////////////////////////////// --> 
-    <div class=" row comment-list  ">   
+    <div class=" row comment-list " >   
             <div class="add-rev ">
                 <img width="50px" height="50px" [src]="user.itemImageUrl ? user.itemImageUrl :'/assets/image/profile.jpg'" alt="profile">
                 <input type="text" class="form-control mr-3" placeholder="Review">
@@ -64,7 +65,7 @@
       </div>
     </div>
 </div>
-
+<app-footer></app-footer>
 
 
 
