@@ -3,26 +3,21 @@ const asyncHandler = require("../middleware/asyncHandler");
 const User = require("../models/User");
 
 //@desc         Get All of one user favourite places
-//@route        GET /api/v1/user/:userId/favourites
+//@route        GET /api/v1/users/:userId/favourites
 //@access       Private
 exports.getFavourites = asyncHandler(async (req, res, next) => {
-  const favourites = await User.findById(req.params.userId).populate(
-    "favourites",
-  );
+  const user = await User.findById(req.params.userId).populate("favourites");
 
-  if (!favourites) {
+  if (!user) {
     next(
-      new ErrorResponse(
-        `No favourites found for user ${req.params.userId}`,
-        404,
-      ),
+      new ErrorResponse(`No user found with user id ${req.params.userId}`, 404),
     );
   }
 
   res.status(200).json({
     success: true,
-    count: favourites.length,
-    data: favourites,
+    count: user.favourites.length,
+    data: user.favourites,
   });
 });
 
@@ -30,13 +25,15 @@ exports.getFavourites = asyncHandler(async (req, res, next) => {
 //@route        GET /api/v1/user/:userId/favourites/:favouriteId
 //@access       Private
 exports.getFavourite = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.params.userId);
+  const user = await User.findById(req.params.userId).populate("favourites");
 
   if (!user) {
     next(new ErrorResponse(`User not found with id ${req.params.userId}`, 404));
   }
 
-  const favourite = await user.favourites.findById(req.params.favouriteId);
+  const favourite = user.favourites.filter(
+    (favourite) => favourite.id === req.params.favouriteId,
+  );
 
   if (!favourite) {
     next(
@@ -46,6 +43,15 @@ exports.getFavourite = asyncHandler(async (req, res, next) => {
       ),
     );
   }
+
+  // if (!favourite) {
+  //   next(
+  //     new ErrorResponse(
+  //       `Favourite not found with id ${req.params.favouriteId}`,
+  //       404,
+  //     ),
+  //   );
+  // }
 
   res.status(200).json({
     success: true,
@@ -63,52 +69,63 @@ exports.addFavourite = asyncHandler(async (req, res, next) => {
     next(new ErrorResponse(`User not found with id ${req.params.userId}`, 404));
   }
 
-  console.log(user.favourites);
+  const favourite = user.favourites;
 
-  const favourite = user.favourites.push(req.body.favouriteId);
+  favourite.push(req.body.favouriteId);
 
-  user.save();
+  const newFavourites = await User.findByIdAndUpdate(
+    req.params.userId,
+    { favourites: favourite },
+    {
+      new: true,
+      runValidators: true,
+    },
+  );
 
-  res.status(200).json({
+  res.status(201).json({
     success: true,
-    data: favourite,
+    data: newFavourites.favourites,
   });
 });
 
-//@desc         Update favourite places of one user
-//@route        PUT /api/v1/user/:userId/favourites/:favouriteId
-//@access       Private
-exports.updateFavourites = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.params.userId);
+// //@desc         Update favourite places of one user
+// //@route        PUT /api/v1/user/:userId/favourites/:favouriteId
+// //@access       Private
+// exports.updateFavourites = asyncHandler(async (req, res, next) => {
+//   let user = await User.findById(req.params.userId);
 
-  if (!user) {
-    next(new ErrorResponse(`User not found with id ${req.params.userId}`, 404));
-  }
+//   if (!user) {
+//     next(new ErrorResponse(`User not found with id ${req.params.userId}`, 404));
+//   }
 
-  const favourites = await user.favourites.find();
+//   const favourites = user.favourites;
 
-  if (!favourites) {
-    next(
-      new ErrorResponse(
-        `Favourite not found with id ${req.params.favouriteId}`,
-        404,
-      ),
-    );
-  }
+//   if (!favourites) {
+//     next(
+//       new ErrorResponse(
+//         `Favourite not found with id ${req.params.favouriteId}`,
+//         404,
+//       ),
+//     );
+//   }
 
-  for (let i = 0; i < favourites.length; i++) {
-    if (favourites[i].id === req.params.favouriteId) {
-      favourites.splice(i, 1);
-      await user.favourites.update(favourites);
-      break;
-    }
-  }
+//   for (let i = 0; i < favourites.length; i++) {
+//     if (favourites[i].id === req.params.favouriteId) {
+//       favourites[i] = req.body;
+//       user = await User.findByIdAndUpdate(
+//         req.params.userId,
+//         { favourites },
+//         { new: true, runValidators: true },
+//       );
+//       break;
+//     }
+//   }
 
-  res.status(200).json({
-    success: true,
-    data: favourites,
-  });
-});
+//   res.status(200).json({
+//     success: true,
+//     data: user.favourites,
+//   });
+// });
 
 //@desc         Delete a favourite place of one user
 //@route        DELETE /api/v1/user/:userId/favourites/:favouriteId
@@ -120,9 +137,7 @@ exports.deleteFavourite = asyncHandler(async (req, res, next) => {
     next(new ErrorResponse(`User not found with id ${req.params.userId}`, 404));
   }
 
-  const favourites = await user.favourites.findByIdAndRemove(
-    req.params.favouriteId,
-  );
+  let favourites = user.favourites;
 
   if (!favourites) {
     next(
@@ -132,6 +147,16 @@ exports.deleteFavourite = asyncHandler(async (req, res, next) => {
       ),
     );
   }
+
+  favourites = favourites.filter((favourite) => {
+    return favourite.toString() !== req.params.favouriteId;
+  });
+
+  await User.findByIdAndUpdate(
+    req.params.userId,
+    { favourites },
+    { new: true, runValidators: true },
+  );
 
   res.status(200).json({
     success: true,

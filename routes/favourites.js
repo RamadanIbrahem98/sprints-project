@@ -10,7 +10,6 @@ router
 router
   .route("/:favouriteId")
   .get(protect, authorize("user"), favouritesController.getFavourite)
-  .put(protect, authorize("user"), favouritesController.updateFavourites)
   .delete(protect, authorize("user"), favouritesController.deleteFavourite);
 
 module.exports = router;
