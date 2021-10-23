@@ -12,6 +12,7 @@ const swaggerSpec = require("./swagger/swagger-spec");
 
 const connectDB = require("./config/database");
 const usersRoutes = require("./routes/users");
+const categoriesRoutes = require("./routes/categories");
 const placesRoutes = require("./routes/places");
 const disabilitiesRoutes = require("./routes/disabilities");
 const reviewsRoutes = require("./routes/reviews");
@@ -38,10 +39,11 @@ app.use(fileUpload());
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/api/v1", usersRoutes);
-app.use("/api/v1", placesRoutes);
+app.use("/api/v1/categories", categoriesRoutes);
+app.use("/api/v1/places", placesRoutes);
 app.use("/api/v1", disabilitiesRoutes);
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1", usersRoutes);
 app.use("/api/v1/reviews", reviewsRoutes);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
