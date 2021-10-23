@@ -4,7 +4,7 @@ const { protect, authorize } = require("../middleware/auth");
 
 const favouritesRoutes = require("./favourites");
 
-router.use("/:userId/favourites", favouritesRoutes);
+router.use("/favourites", favouritesRoutes);
 
 router
   .route("/photo")
